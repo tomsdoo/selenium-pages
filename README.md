@@ -12,7 +12,7 @@ Web drivers are installed and the paths for the drivers are ready.
 ``` typescript
 import { Selen } from "selenium-pages";
 
-const googleOptions = {
+const pageOptions = {
   origin: "https://www.google.com",
   maxWaitMs: 10000
 };
@@ -22,7 +22,7 @@ const googleOptions = {
 
 const driver = await Selen.Build("chrome");
 
-const page = new Selen.Pages.Any(driver, googleOptions);
+const page = new Selen.Pages.Any(driver, pageOptions);
 
 await page.goHome();
 
@@ -51,7 +51,7 @@ await driver.quit();
 ``` typescript
 import { Selen } from "selenium-pages";
 
-const googleOptions = {
+const pageOptions = {
   origin: "https://www.google.com",
   maxWaitMs: 10000
 };
@@ -74,7 +74,7 @@ Selen.Pages.add(Test);
 const driver = await Selen.Build("chrome");
 
 // you can new Selen.Pages[your customized class name]
-const testPage = new Selen.Pages.Test(driver, googleOptions);
+const testPage = new Selen.Pages.Test(driver, pageOptions);
 await testPage.goHome();
 
 // you can use your methods
