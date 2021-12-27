@@ -93,4 +93,28 @@ describe("testing", () => {
       titles.every(title => typeof title === "string")
     );
   });
+
+  it("styleDictionary", async () => {
+    class Custom extends Selen.Pages.Base {
+      initializeStyleDictionary(){
+        this.styleDictionary.renew({
+          qbox: "input[name='q']",
+          nextPageLink: "#pnnext"
+        });
+      }
+      async searchSome(){
+        await this.querySelector("qbox")
+          .then(box => box.sendKeys("test", require("selenium-webdriver").Key.ENTER));
+        await this.querySelector("nextPageLink")
+          .then(link => link.click());
+        await this.querySelector("div.g a")
+          .then(link => link.click());
+      }
+    }
+    Selen.Pages.add(Custom);
+
+    const custom = new Selen.Pages.Custom(driver, googleOptions);
+    await custom.goHome();
+    await custom.searchSome();
+  });
 });
