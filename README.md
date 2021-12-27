@@ -1,20 +1,32 @@
 # selenium-pages
 
+selenium-pages is a package for you who want to use selenium and manage some pages with your own classes simply.
+
+Let's just get started and learn little by little, if needed.
+
 ## Installation
 ``` shell
 npm install selenium-pages
 ```
 
-## Requisition
+for TypeScript, below line may be good too
+``` shell
+npm install -D @types/selenium-webdriver
+```
+
+## Prerequisites
 Web drivers are installed and the paths for the drivers are ready.
 
 ## Usage
+
+#### Basics
+You can use Page.Any class for getting started or lightly use.
 ``` typescript
 import { Selen } from "selenium-pages";
 
 const pageOptions = {
-  origin: "https://www.google.com",
-  maxWaitMs: 10000
+  origin: "https://www.google.com", // home page origin
+  maxWaitMs: 10000 // timeout
 };
 
 (async () => {
@@ -48,6 +60,8 @@ await driver.quit();
 })();
 ```
 
+#### How to extend the base class
+You can extend the base class for your own use.
 ``` typescript
 import { Selen } from "selenium-pages";
 
@@ -79,6 +93,59 @@ await testPage.goHome();
 
 // you can use your methods
 await testPage.workSome();
+
+///
+})();
+```
+
+#### How to use customized options
+You can extend SelenOptions and use it in your class instance methods.
+``` typescript
+import { Selen, SelenOptions } from "selenium-pages";
+
+type CustomOptions = SelenOptions & {
+  some: string;
+};
+
+class Custom extends Selen.Pages.Base<CustomOptions> {
+  public workSome(){
+    console.log(this.options.some);
+  }
+}
+
+Selen.Pages.add(Custom);
+
+const customPage = new Selen.Pages.Custom(driver, {
+  origin: "https://...",
+  maxWaitMs: 10000,
+  some: "thing"
+});
+```
+
+#### How to use style dictionary
+styleDictionary is ready for you to name the selector strings.
+``` typescript
+import { Selen } from "selenium-pages";
+
+class Custom extends Selen.Pages.Base {
+  protected initializeStyleDictionary(){
+    this.styleDictionary.renew({
+      inputBox: "div form input[name='some']",
+      button: "div form button[type='submit']"
+    });
+  }
+}
+
+Selen.Pages.add(Custom);
+
+(async () => {
+///
+
+const customPage = new Selen.Pages.Custom(driver, someOptions);
+await customPage.querySelector("inputBox")
+  .then(box => box.sendKeys("hello"));
+await customPage.querySelector("button")
+  .then(button => button.click());
 
 ///
 })();
