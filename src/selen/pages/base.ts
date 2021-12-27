@@ -21,10 +21,10 @@ export type SelenOptions = {
   [key: string]: any;
 };
 
-export abstract class PageBase {
+export abstract class PageBase<Options extends SelenOptions = SelenOptions> {
   protected driver: WebDriver;
-  protected options: SelenOptions;
-  constructor(driver: WebDriver, options: SelenOptions){
+  protected options: Options;
+  constructor(driver: WebDriver, options: Options){
     this.driver = driver;
     this.options = options;
   }

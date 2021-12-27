@@ -1,4 +1,4 @@
-import { PageBase } from "./base";
+import { PageBase, SelenOptions } from "./base";
 
-export class Any extends PageBase {
+export class Any<Options extends SelenOptions = SelenOptions> extends PageBase<Options> {
 }
