@@ -1,6 +1,6 @@
 import { WebDriver } from "selenium-webdriver";
 import { SelenOptions, PageBase } from "./base";
-export { SelenOptions, PageBase, WebElementEx } from "./base";
+export { SelenOptions, PageBase, WebElementEx, Dictionary } from "./base";
 import { Any } from "./any";
 export { Any } from "./any";
 
