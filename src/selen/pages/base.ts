@@ -1,6 +1,6 @@
 import { By, until, Key, WebDriver, WebElement } from "selenium-webdriver";
 
-class WebElementEx extends WebElement {
+export class WebElementEx extends WebElement {
   constructor(original: WebElement){
     super(original.getDriver(), original.getId());
   }
