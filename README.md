@@ -29,9 +29,9 @@ Web drivers are installed and the paths for the drivers are ready.
 #### Basics
 You can use Page.Any class for getting started or lightly use.
 ``` typescript
-import { Selen } from "selenium-pages";
+import { Selen, SelenOptions } from "selenium-pages";
 
-const pageOptions = {
+const pageOptions: SelenOptions = {
   origin: "https://www.google.com" // home page origin
 };
 
@@ -69,9 +69,9 @@ await driver.quit();
 #### How to extend the base class
 You can extend the base class for your own use.
 ``` typescript
-import { Selen } from "selenium-pages";
+import { Selen, SelenOptions } from "selenium-pages";
 
-const pageOptions = {
+const pageOptions: SelenOptions = {
   origin: "https://www.google.com"
 };
 
@@ -87,16 +87,16 @@ class Test extends Selen.Pages.Base {
   }
 }
 
-// registration
-Selen.Pages.add(Test);
+// customized Pages class definition
+class MyPages extends Selen.Pages {
+  public static Test = Test;
+}
 
 const driver = await Selen.Build("chrome");
 
-// you can new Selen.Pages[your customized class name]
-const testPage = new Selen.Pages.Test(driver, pageOptions);
+const testPage = new MyPages.Test(driver, pageOptions);
 await testPage.goHome();
 
-// you can use your methods
 await testPage.workSome();
 
 ///
@@ -118,9 +118,7 @@ class Custom extends Selen.Pages.Base<CustomOptions> {
   }
 }
 
-Selen.Pages.add(Custom);
-
-const customPage = new Selen.Pages.Custom(driver, {
+const customPage = new Custom(driver, {
   origin: "https://...",
   some: "thing"
 });
@@ -140,12 +138,10 @@ class Custom extends Selen.Pages.Base {
   }
 }
 
-Selen.Pages.add(Custom);
-
 (async () => {
 ///
 
-const customPage = new Selen.Pages.Custom(driver, someOptions);
+const customPage = new Custom(driver, someOptions);
 await customPage.querySelector("inputBox")
   .then(box => box.sendKeys("hello"));
 await customPage.querySelector("button")
@@ -153,4 +149,35 @@ await customPage.querySelector("button")
 
 ///
 })();
+```
+
+#### How to bundle customized pages your own
+``` typescript
+import { Selen } from "selenium-pages";
+
+// define your own classes
+class Custom1 extends Selen.Pages.Base {
+  public sayHello(){
+    console.log("hi");
+  }
+}
+
+class Custom2 extends Selen.Pages.Base {
+  public sayBye(){
+    console.log("bye");
+  }
+}
+
+// bundle your classes
+class MyPages extends Selen.Pages {
+  public static Custom1 = Custom1;
+  public static Custom2 = Custom2;
+}
+
+// then you can use page classes from MyPages
+const customPage1 = new MyPages.Custom1(driver, options);
+const customPage2 = new MyPages.Custom2(driver, options);
+
+// and the classes defined in base class(Selen.Pages) can be accessed
+const anyPage = new MyPages.Any(driver, options);
 ```
