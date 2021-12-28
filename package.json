@@ -10,7 +10,9 @@
     "test": "npm run build && mocha test/test.js --timeout 10000"
   },
   "keywords": [
-    "selenium"
+    "javascript",
+    "selenium",
+    "typescript"
   ],
   "author": "tom",
   "license": "MIT",
