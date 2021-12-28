@@ -1,5 +1,12 @@
 # selenium-pages
 
+![npm](https://img.shields.io/npm/v/selenium-pages)
+![NPM](https://img.shields.io/npm/l/selenium-pages)
+![npms.io (quality)](https://img.shields.io/npms-io/quality-score/selenium-pages)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/selenium-pages)
+![Maintenance](https://img.shields.io/maintenance/yes/2021)
+![depends on selenium-webdriver](https://img.shields.io/badge/depends%20on-selenium--webdriver-informational)
+
 selenium-pages is a package for you who want to use selenium and manage some pages with your own classes simply.
 
 Let's just get started and learn little by little, if needed.
