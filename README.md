@@ -67,7 +67,9 @@ await driver.quit();
 })();
 ```
 
-### Structures
+## Structures
+You can feel free to extend the base class.
+
 <p align="center">
   <img src=".github/assets/model-image.svg" width="200" />
 </p>
