@@ -98,12 +98,14 @@ describe("testing", () => {
     class Custom extends Selen.Pages.Base {
       initializeStyleDictionary(){
         this.styleDictionary.renew({
+          body: "body",
           qbox: "input[name='q']",
           nextPageLink: "#pnnext"
         });
       }
       async searchSome(){
-        await this.querySelector("qbox")
+        await this.querySelector("body")
+          .then(body => body.querySelector("qbox"))
           .then(box => box.sendKeys("test", require("selenium-webdriver").Key.ENTER));
         await this.querySelector("nextPageLink")
           .then(link => link.click());

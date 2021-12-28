@@ -1,17 +1,19 @@
 import { By, until, Key, WebDriver, WebElement } from "selenium-webdriver";
 
 export class WebElementEx extends WebElement {
-  constructor(original: WebElement){
+  protected styleDictionary: Dictionary;
+  constructor(original: WebElement, styleDictionary: Dictionary){
     super(original.getDriver(), original.getId());
+    this.styleDictionary = styleDictionary;
   }
   public async querySelector(css: string){
-    return this.findElement(By.css(css))
-      .then(webele => new WebElementEx(webele));
+    return this.findElement(By.css(this.styleDictionary.get(css)))
+      .then(webele => new WebElementEx(webele, this.styleDictionary));
   }
   public async querySelectorAll(css: string){
     return Array
-      .from(await this.findElements(By.css(css)))
-      .map(webele => new WebElementEx(webele));
+      .from(await this.findElements(By.css(this.styleDictionary.get(css))))
+      .map(webele => new WebElementEx(webele, this.styleDictionary));
   }
 }
 
@@ -93,7 +95,7 @@ export abstract class PageBase<Options extends SelenOptions = SelenOptions> {
       until.elementLocated(By.css(this.styleDictionary.get(css))),
       this.options.maxWaitMs
     )
-    .then(webele => new WebElementEx(webele));
+    .then(webele => new WebElementEx(webele, this.styleDictionary));
   }
 
   public async querySelectorAll(css: string){
@@ -101,6 +103,6 @@ export abstract class PageBase<Options extends SelenOptions = SelenOptions> {
     return Array.from(
       await this.driver.findElements(By.css(this.styleDictionary.get(css)))
     )
-    .map(webele => new WebElementEx(webele));
+    .map(webele => new WebElementEx(webele, this.styleDictionary));
   }
 }
