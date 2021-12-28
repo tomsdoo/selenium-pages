@@ -67,13 +67,6 @@ await driver.quit();
 })();
 ```
 
-## Structures
-You can feel free to extend the base class.
-
-<p align="center">
-  <img alt="model image" src="./.github/assets/model-image.svg" width="200" />
-</p>
-
 #### How to extend the base class
 You can extend the base class for your own use.
 ``` typescript
