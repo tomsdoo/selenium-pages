@@ -8,8 +8,7 @@ Install chromedriver and define PATH to chromedriver before testing
 let driver;
 
 const googleOptions = {
-  origin: "https://www.google.com",
-  maxWaitMs: 10000
+  origin: "https://www.google.com"
 };
 
 describe("testing", () => {
