@@ -8,7 +8,7 @@
 ![depends on selenium-webdriver](https://img.shields.io/badge/depends%20on-selenium--webdriver-informational)
 
 <p align="center">
-  <img src=".github/assets/model-image.svg" width="300" />
+  <img src=".github/assets/model-image.svg" width="200" />
 </p>
 
 selenium-pages is a package for you who want to use selenium and manage some pages with your own classes simply.
