@@ -110,17 +110,23 @@ import { Selen, SelenOptions } from "selenium-pages";
 
 type CustomOptions = SelenOptions & {
   some: string;
+  testUrl: string;
 };
 
 class Custom extends Selen.Pages.Base<CustomOptions> {
-  public workSome(){
+  public async workSome(){
+    // your options can be accessed with this.options
     console.log(this.options.some);
+
+    // WebDriver can be accessed with this.driver
+    await this.driver.get(this.options.testUrl);
   }
 }
 
 const customPage = new Custom(driver, {
   origin: "https://...",
-  some: "thing"
+  some: "thing",
+  testUrl: "https://.."
 });
 ```
 
