@@ -1,6 +1,6 @@
 {
   "name": "selenium-pages",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "It's an extensible page based class library for selenium.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
