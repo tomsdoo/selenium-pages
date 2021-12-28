@@ -7,10 +7,6 @@
 ![Maintenance](https://img.shields.io/maintenance/yes/2021)
 ![depends on selenium-webdriver](https://img.shields.io/badge/depends%20on-selenium--webdriver-informational)
 
-<p align="center">
-  <img src=".github/assets/model-image.svg" width="300" />
-</p>
-
 selenium-pages is a package for you who want to use selenium and manage some pages with your own classes simply.
 
 Let's just get started and learn little by little, if needed.
@@ -70,6 +66,13 @@ await driver.quit();
 ///
 })();
 ```
+
+## Structures
+You can feel free to extend the base class.
+
+<p align="center">
+  <img src=".github/assets/model-image.svg" width="200" />
+</p>
 
 #### How to extend the base class
 You can extend the base class for your own use.
