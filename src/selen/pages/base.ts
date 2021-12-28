@@ -20,7 +20,6 @@ export class WebElementEx extends WebElement {
 export type SelenOptions = {
   origin: string;
   maxWaitMs?: number;
-  [key: string]: any;
 };
 
 export type DictionaryKeyValue = {
