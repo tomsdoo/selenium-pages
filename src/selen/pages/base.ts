@@ -19,7 +19,7 @@ export class WebElementEx extends WebElement {
 
 export type SelenOptions = {
   origin: string;
-  maxWaitMs: number;
+  maxWaitMs?: number;
   [key: string]: any;
 };
 
@@ -51,7 +51,10 @@ export abstract class PageBase<Options extends SelenOptions = SelenOptions> {
   public styleDictionary: Dictionary;
   constructor(driver: WebDriver, options: Options){
     this.driver = driver;
-    this.options = options;
+    this.options = {
+      maxWaitMs: 10000,
+      ...options
+    };
     this.styleDictionary = new Dictionary();
     this.initializeStyleDictionary();
   }
