@@ -32,8 +32,7 @@ You can use Page.Any class for getting started or lightly use.
 import { Selen } from "selenium-pages";
 
 const pageOptions = {
-  origin: "https://www.google.com", // home page origin
-  maxWaitMs: 10000 // timeout
+  origin: "https://www.google.com" // home page origin
 };
 
 (async () => {
@@ -73,8 +72,7 @@ You can extend the base class for your own use.
 import { Selen } from "selenium-pages";
 
 const pageOptions = {
-  origin: "https://www.google.com",
-  maxWaitMs: 10000
+  origin: "https://www.google.com"
 };
 
 (async () => {
@@ -124,7 +122,6 @@ Selen.Pages.add(Custom);
 
 const customPage = new Selen.Pages.Custom(driver, {
   origin: "https://...",
-  maxWaitMs: 10000,
   some: "thing"
 });
 ```
