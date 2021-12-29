@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+         node-version: '12.x'
+
+    - name: install Chrome
+      run: |
+        cp google.chrome.repo /etc/yum.repos.d/google.chrome.repo
+        yum install -y google-chrome-stable
+        google-chrome --version
+
+    - name: npm ci and build
+      run: |
+        npm ci
+        npm test
