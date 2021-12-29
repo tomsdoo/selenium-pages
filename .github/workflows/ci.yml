@@ -19,6 +19,7 @@ jobs:
 
     - name: install Chrome
       run: |
+        whoami
         sudo cp -f google.chrome.repo /etc/yum.repos.d/google.chrome.repo
         yum install -y google-chrome-stable
         google-chrome --version
