@@ -19,7 +19,7 @@ jobs:
       with:
          node-version: '12.x'
 
-    - name: npm ci and build
+    - name: npm install and test
       run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
