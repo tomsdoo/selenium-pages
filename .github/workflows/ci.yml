@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: circleci/node:latest-browsers
 
     steps:
     - uses: actions/checkout@v2
@@ -19,8 +19,6 @@ jobs:
 
     - name: install Chrome
       run: |
-        cp google.chrome.repo /etc/yum.repos.d/google.chrome.repo
-        yum install -y google-chrome-stable
         google-chrome --version
 
     - name: npm ci and build
