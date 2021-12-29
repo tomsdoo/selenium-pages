@@ -7,7 +7,7 @@
   "types": "dist/esm/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
-    "test": "npm run build && mocha test/test.js --timeout 10000"
+    "test": "npm run build && mocha test/test.js --timeout 20000"
   },
   "keywords": [
     "javascript",
