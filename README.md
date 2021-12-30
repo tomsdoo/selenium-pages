@@ -87,14 +87,11 @@ class Test extends Selen.Pages.Base {
   }
 }
 
-// customized Pages class definition
-class MyPages extends Selen.Pages {
-  public static Test = Test;
-}
+const testPage = new Test(
+  await Selen.Build("chrome"),
+  pageOptions
+);
 
-const driver = await Selen.Build("chrome");
-
-const testPage = new MyPages.Test(driver, pageOptions);
 await testPage.goHome();
 
 await testPage.workSome();
