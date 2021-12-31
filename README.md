@@ -4,10 +4,10 @@
 ![NPM](https://img.shields.io/npm/l/selenium-pages)
 ![npms.io (quality)](https://img.shields.io/npms-io/quality-score/selenium-pages)
 ![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/selenium-pages)
-![Maintenance](https://img.shields.io/maintenance/yes/2021)
+![Maintenance](https://img.shields.io/maintenance/yes/2022)
 ![depends on selenium-webdriver](https://img.shields.io/badge/depends%20on-selenium--webdriver-informational)
 
-selenium-pages is a package for you who want to use selenium and manage some pages with your own classes simply.
+```selenium-pages``` is a package for you who want to use selenium and manage some pages with your own classes simply.
 
 Let's just get started and learn little by little, if needed.
 
@@ -27,7 +27,7 @@ Web drivers are installed and the paths for the drivers are ready.
 ## Usage
 
 #### Basics
-You can use Page.Any class for getting started or lightly use.
+You can use ```Selen.Pages.Any``` class for getting started or lightly use.
 ``` typescript
 import { Selen, SelenOptions } from "selenium-pages";
 
@@ -67,7 +67,7 @@ await driver.quit();
 ```
 
 #### How to extend the base class
-You can extend the base class for your own use.
+You can extend ```Selen.Pages.Base``` class for your own use.
 ``` typescript
 import { Selen, SelenOptions } from "selenium-pages";
 
@@ -101,7 +101,7 @@ await testPage.workSome();
 ```
 
 #### How to use customized options
-You can extend SelenOptions and use it in your class instance methods.
+You can extend ```SelenOptions``` and use it in your class instance methods.
 ``` typescript
 import { Selen, SelenOptions } from "selenium-pages";
 
@@ -128,7 +128,7 @@ const customPage = new Custom(driver, {
 ```
 
 #### How to use style dictionary
-styleDictionary is ready for you to name the selector strings.
+```styleDictionary``` is ready for you to name the selector strings.
 ``` typescript
 import { Selen } from "selenium-pages";
 
@@ -155,6 +155,7 @@ await customPage.querySelector("button")
 ```
 
 #### How to bundle customized pages your own
+You can extend ```Selen.Pages``` for your own classes to be bundled
 ``` typescript
 import { Selen } from "selenium-pages";
 
