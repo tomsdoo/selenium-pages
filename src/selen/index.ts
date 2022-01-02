@@ -11,4 +11,7 @@ export class Selen {
   public static async Build(browser: string){
     return new Builder().forBrowser(browser).build();
   }
+  public static async build(browser: string){
+    return this.Build(browser);
+  }
 }
