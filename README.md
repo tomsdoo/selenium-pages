@@ -38,7 +38,7 @@ const pageOptions: SelenOptions = {
 (async () => {
 ///
 
-const driver = await Selen.Build("chrome");
+const driver = await Selen.build("chrome");
 
 const page = new Selen.Pages.Any(driver, pageOptions);
 
@@ -88,7 +88,7 @@ class Test extends Selen.Pages.Base {
 }
 
 const testPage = new Test(
-  await Selen.Build("chrome"),
+  await Selen.build("chrome"),
   pageOptions
 );
 
@@ -152,6 +152,23 @@ await customPage.querySelector("button")
 
 ///
 })();
+```
+
+### Key can be accessed from ```Selen.Pages.Base``` instance as ```this.Key```
+``` typescript
+import { Selen } from "selenium-pages";
+
+(async () => {
+///
+class MyPage extends Selen.Pages.Base {
+  public async workSome(text: string){
+    await this.querySelector("input[name='something']")
+      .then(box => box.sendKeys(text, this.Key.ENTER));
+  }
+}
+///
+})();
+
 ```
 
 #### How to bundle customized pages your own

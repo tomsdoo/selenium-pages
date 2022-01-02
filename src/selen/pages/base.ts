@@ -45,6 +45,7 @@ export class Dictionary {
 }
 
 export abstract class PageBase<Options extends SelenOptions = SelenOptions> {
+  public Key: typeof Key;
   protected driver: WebDriver;
   protected options: Options;
   public styleDictionary: Dictionary;
@@ -56,6 +57,7 @@ export abstract class PageBase<Options extends SelenOptions = SelenOptions> {
     };
     this.styleDictionary = new Dictionary();
     this.initializeStyleDictionary();
+    this.Key = Key;
   }
   protected initializeStyleDictionary(){
     // nop, inherits should override if needed

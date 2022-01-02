@@ -13,7 +13,7 @@ const googleOptions = {
 
 describe("testing", () => {
   before(async () => {
-    driver = await Selen.Build("chrome");
+    driver = await Selen.build("chrome");
   });
 
   after(async () => {
@@ -105,7 +105,7 @@ describe("testing", () => {
       async searchSome(){
         await this.querySelector("body")
           .then(body => body.querySelector("qbox"))
-          .then(box => box.sendKeys("test", require("selenium-webdriver").Key.ENTER));
+          .then(box => box.sendKeys("test", this.Key.ENTER));
         await this.querySelector("nextPageLink")
           .then(link => link.click());
         await this.querySelector("div.g a")
