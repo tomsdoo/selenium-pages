@@ -202,3 +202,19 @@ const customPage2 = new MyPages.Custom2(driver, options);
 // and the classes defined in base class(Selen.Pages) can be accessed
 const anyPage = new MyPages.Any(driver, options);
 ```
+
+### Utilities
+
+#### building WebDriver
+```Selen.build()``` returns a Promise for WebDriver instance.
+
+``` typescript
+const driver = await Selen.build("chrome");
+```
+
+#### setting environment variable PATH
+```Selen.setPath()``` adds the string into PATH variable.
+
+``` typescript
+Selen.setPath("/path/to/driver");
+```
