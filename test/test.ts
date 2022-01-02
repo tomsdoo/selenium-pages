@@ -1,13 +1,15 @@
-const { Selen } = require("../dist/cjs/");
-const assert = require("assert");
+import { WebDriver } from "selenium-webdriver";
+import { describe, it, before, after } from "mocha";
+import { Selen } from "../src/selen/";
+import { strict as assert } from "assert";
 
 /*
 Install chromedriver and define PATH to chromedriver before testing
 */
 
-let driver;
+let driver: WebDriver;
 
-const googleOptions = {
+const pageOptions = {
   origin: "https://www.google.com"
 };
 
@@ -21,34 +23,43 @@ describe("testing", () => {
   });
 
   it("getCurrentUrl()", async () => {
-    const google = new Selen.Pages.Any(driver, googleOptions);
+    const page = new Selen.Pages.Any(
+      driver,
+      pageOptions
+    );
 
-    await google.goHome();
+    await page.goHome();
 
     assert.equal(
-      await google.getCurrentUrl(),
+      await page.getCurrentUrl(),
       "https://www.google.com/"
     );
   });
 
   it("goHome()", async () => {
-    const google = new Selen.Pages.Any(driver, googleOptions);
+    const page = new Selen.Pages.Any(
+      driver,
+      pageOptions
+    );
 
-    await google.goHome();
+    await page.goHome();
 
     assert.equal(
-      await google.getTitle(),
+      await page.getTitle(),
       "Google"
     );
   });
 
   it("goTo()", async () => {
-    const google = new Selen.Pages.Any(driver, googleOptions);
+    const page = new Selen.Pages.Any(
+      driver,
+      pageOptions
+    );
 
-    await google.goTo();
+    await page.goTo();
 
     assert.equal(
-      await google.getTitle(),
+      await page.getTitle(),
       "Google"
     );
   });
@@ -67,16 +78,21 @@ describe("testing", () => {
         `);
       }
     }
-    Selen.Pages.add(Test);
 
-    const testPage = new Selen.Pages.Test(driver, googleOptions);
+    const testPage = new Test(
+      driver,
+      pageOptions
+    );
     await testPage.workSome();
   });
 
   it("querySelector()", async () => {
-    const google = new Selen.Pages.Any(driver, googleOptions);
-    await google.goTo("/search?q=test");
-    const body = await google
+    const page = new Selen.Pages.Any(
+      driver,
+      pageOptions
+    );
+    await page.goTo("/search?q=test");
+    const body = await page
       .querySelector("body");
     const titles = await body
       .querySelectorAll("div.g h3")
@@ -112,10 +128,17 @@ describe("testing", () => {
           .then(link => link.click());
       }
     }
-    Selen.Pages.add(Custom);
 
-    const custom = new Selen.Pages.Custom(driver, googleOptions);
+    class MyPages extends Selen.Pages {
+      public static Custom = Custom;
+    }
+
+    const custom = new MyPages.Custom(
+      driver,
+      pageOptions
+    );
     await custom.goHome();
     await custom.searchSome();
   });
+
 });
