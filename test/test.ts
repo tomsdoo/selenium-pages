@@ -1,6 +1,6 @@
 import { WebDriver } from "selenium-webdriver";
 import { describe, it, before, after } from "mocha";
-import { Selen } from "../src/selen/";
+import { Selen, SelenOptions } from "../src/selen/";
 import { strict as assert } from "assert";
 
 /*
@@ -9,7 +9,7 @@ Install chromedriver and define PATH to chromedriver before testing
 
 let driver: WebDriver;
 
-const pageOptions = {
+const pageOptions: SelenOptions = {
   origin: "https://www.google.com"
 };
 
