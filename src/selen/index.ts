@@ -15,3 +15,7 @@ export class Selen {
     return this.Build(browser);
   }
 }
+
+export namespace Selen {
+  export type Options = SelenOptions;
+}

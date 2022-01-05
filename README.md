@@ -29,9 +29,9 @@ Web drivers are installed and the paths for the drivers are ready.
 #### Basics
 You can use ```Selen.Pages.Any``` class for getting started or lightly use.
 ``` typescript
-import { Selen, PageOptions } from "selenium-pages";
+import { Selen } from "selenium-pages";
 
-const pageOptions: PageOptions = {
+const pageOptions: Selen.Options = {
   origin: "https://www.google.com" // home page origin
 };
 
@@ -69,9 +69,9 @@ await driver.quit();
 #### How to extend the base class
 You can extend ```Selen.Pages.Base``` class for your own use.
 ``` typescript
-import { Selen, PageOptions } from "selenium-pages";
+import { Selen } from "selenium-pages";
 
-const pageOptions: PageOptions = {
+const pageOptions: Selen.Options = {
   origin: "https://www.google.com"
 };
 
@@ -101,11 +101,11 @@ await testPage.workSome();
 ```
 
 #### How to use customized options
-You can extend ```PageOptions``` and use it in your class instance methods.
+You can extend ```Selen.Options``` and use it in your class instance methods.
 ``` typescript
-import { Selen, PageOptions } from "selenium-pages";
+import { Selen } from "selenium-pages";
 
-type CustomOptions = PageOptions & {
+type CustomOptions = Selen.Options & {
   some: string;
   testUrl: string;
 };
