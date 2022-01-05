@@ -1,6 +1,6 @@
 import { WebDriver } from "selenium-webdriver";
 import { describe, it, before, after } from "mocha";
-import { Selen, SelenOptions } from "../src/selen/";
+import { Selen, PageOptions } from "../src/selen/";
 import { strict as assert } from "assert";
 
 /*
@@ -9,7 +9,7 @@ Install chromedriver and define PATH to chromedriver before testing
 
 let driver: WebDriver;
 
-const pageOptions: SelenOptions = {
+const pageOptions: PageOptions = {
   origin: "https://www.google.com"
 };
 
@@ -122,10 +122,6 @@ describe("testing", () => {
         await this.querySelector("body")
           .then(body => body.querySelector("qbox"))
           .then(box => box.sendKeys("test", this.Key.ENTER));
-        await this.querySelector("nextPageLink")
-          .then(link => link.click());
-        await this.querySelector("div.g a")
-          .then(link => link.click());
       }
     }
 
@@ -139,6 +135,10 @@ describe("testing", () => {
     );
     await custom.goHome();
     await custom.searchSome();
-  });
 
+    assert(
+      custom.getCurrentUrl()
+        .then(url => url.match(/^https:\/\/www\.google\.com\/.*?q=test.*/i))
+    );
+  });
 });
