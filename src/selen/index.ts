@@ -1,6 +1,6 @@
 import { Builder, WebDriver } from "selenium-webdriver";
 import { Pages, SelenOptions } from "./pages/";
-export { Pages, SelenOptions, WebElementEx, Dictionary } from "./pages/";
+export { Pages, SelenOptions, SelenOptions as PageOptions, WebElementEx, Dictionary } from "./pages/";
 
 export class Selen {
   public static Pages = Pages;
