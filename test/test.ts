@@ -1,6 +1,6 @@
 import { WebDriver } from "selenium-webdriver";
 import { describe, it, before, after } from "mocha";
-import { Selen, PageOptions } from "../src/selen/";
+import { Selen } from "../src/selen/";
 import { strict as assert } from "assert";
 
 /*
@@ -9,7 +9,7 @@ Install chromedriver and define PATH to chromedriver before testing
 
 let driver: WebDriver;
 
-const pageOptions: PageOptions = {
+const pageOptions: Selen.Options = {
   origin: "https://www.google.com"
 };
 
@@ -139,6 +139,35 @@ describe("testing", () => {
     assert(
       custom.getCurrentUrl()
         .then(url => url.match(/^https:\/\/www\.google\.com\/.*?q=test.*/i))
+    );
+  });
+
+  it("customized options", async () => {
+    type MyOptions = Selen.Options & {
+      keyword: string;
+    };
+
+    class Custom extends Selen.Pages.Base<MyOptions> {
+      public async test(){
+        await this.goTo(`/q=${this.options.keyword}`);
+      }
+    }
+
+    const custom = new Custom(
+      driver,
+      {
+        ...pageOptions,
+        keyword: "selenium"
+      }
+    );
+
+    await custom.test();
+
+    assert(
+      await custom.getCurrentUrl()
+        .then(url => url.match(
+          /^https:\/\/www\.google\.com\/q=selenium/i
+        ))
     );
   });
 });
