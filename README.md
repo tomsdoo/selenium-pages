@@ -213,8 +213,8 @@ const driver = await Selen.build("chrome");
 ```
 
 #### setting environment variable PATH
-```Selen.setPath()``` adds the string into PATH variable.
+```Selen.addPath()``` adds the string into PATH variable.
 
 ``` typescript
-Selen.setPath("/path/to/driver");
+Selen.addPath("/path/to/driver");
 ```
