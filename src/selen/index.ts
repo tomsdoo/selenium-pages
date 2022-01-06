@@ -8,6 +8,9 @@ export class Selen {
     const sep = process.platform == "win32" ? ";" : ":";
     process.env.PATH += `${sep}${path}`;
   }
+  public static addPath(path: string){
+    Selen.setPath(path);
+  }
   public static async Build(browser: string){
     return new Builder().forBrowser(browser).build();
   }
