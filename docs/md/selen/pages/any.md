@@ -1,6 +1,6 @@
 # Selen.Pages.Any
 
-```Selen.Pages.Any``` is a class that just inherit [```Selen.Page.Base``` class](//inner.link.dummy/md/selen/pages/base.md), with no customizations. See [```Selen.Pages.Base``` class](//inner.link.dummy/md/selen/pages/base.md) for the instance members.
+```Selen.Pages.Any``` is a class that just inherit [```Selen.Page.Base``` class](#/md/selen/pages/base), with no customizations. See [```Selen.Pages.Base``` class](#/md/selen/pages/base) for the instance members.
 
 ``` mermaid
 classDiagram
