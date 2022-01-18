@@ -17,7 +17,7 @@ Web drivers are installed and the paths for the drivers are ready.
 
 ## Usage
 
-You can use ```Selen.Pages.Any``` class for getting started or lightly use.
+You can use [```Selen.Pages.Any``` class](#/md/selen/pages/any) for getting started or lightly use.
 ``` typescript
 import { Selen } from "selenium-pages";
 
