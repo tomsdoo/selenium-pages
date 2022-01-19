@@ -29,7 +29,7 @@ class Base~Options extends Selen.Options~ {
 |#|name|description|
 |--:|:--|:--|
 |1|driver|WebDriver of ```selenium-webdriver```|
-|2|options|the information of page class. see also [Sele.Options](https://inner.link.dummy/md/selen/options.md)|
+|2|options|the information of page class. see also [Sele.Options](#/md/selen/options)|
 
 ## methods
 public methods are below.
@@ -103,7 +103,7 @@ console.log(await page.isUrlValid());
 ```
 
 ### querySelector()
-```querySelector()``` returns a ```Promise``` for [```WebElementEx```](//inner.link.dummy/md/selen/webelementex.md) that matches the selector provided.
+```querySelector()``` returns a ```Promise``` for [```WebElementEx```](#/md/selen/webelementex) that matches the selector provided.
 
 
 #### parameters
@@ -119,7 +119,7 @@ await page.querySelector("div.test button.whatever")
 ```
 
 ### querySelectorAll()
-```querySelectorAll()``` returns a ```Promise``` for the array of [```WebElementEx```](//inner.link.dummy/md/selen/webelementex.md) that match the selector provided.
+```querySelectorAll()``` returns a ```Promise``` for the array of [```WebElementEx```](#/md/selen/webelementex) that match the selector provided.
 
 #### parameters
 The parameters are below.
@@ -140,7 +140,8 @@ await page.querySelectorAll("div.test input[type='text']")
 ### initializeStyleDictionary()
 ```initializeStyleDictionary()``` initializes the instance member variable ```styleDictionary```.  
 It will be called from the constructor of the instance.  
-You can customize ```styleDictionary``` by rewriting ```initializeStyleDictionary()``` when you define the customized page class.
+You can customize ```styleDictionary``` by rewriting ```initializeStyleDictionary()``` when you define the customized page class.  
+```styleDictionary``` is an instance of [```Dictionary```](#/md/selen/dictionary).
 
 ``` typescript
 class Custom extends Selen.Pages.Base {
