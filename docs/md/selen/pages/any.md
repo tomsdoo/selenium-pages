@@ -7,7 +7,7 @@ classDiagram
 
 Base <|-- Any
 
-link Base "https://inner.link.dummy/md/selen/pages/base.md"
+link Base "https://inner.link.dummy/md/selen/pages/base"
 ```
 
 ``` typescript
