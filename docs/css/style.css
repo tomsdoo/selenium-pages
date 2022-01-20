@@ -28,6 +28,20 @@ body > footer {
   color: #eeeeee;
 }
 
+body > footer .footer-link {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template: "text icon" max-content / max-content max-content;
+}
+body > footer .footer-link > .text {
+  grid-area: text;
+}
+body > footer .footer-link > .icon {
+  grid-area: icon;
+  font-size: 1em;
+}
+
 body > header {
   grid-area: header;
   height: var(--global-header-height);
@@ -73,7 +87,7 @@ body > main > #loading {
   grid-template:
     "title" max-content
     "list " max-content / 1fr;
-  min-width: 20vw;
+  min-width: min(20vw, 15rem);
   border-right: 1px solid #434343;
 }
 
