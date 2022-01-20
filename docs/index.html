@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>selenium-pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="selenium-pages is an extensible page based class library for selenium. TypeScript is supported.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css/destyle.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/nord.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js" async defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router"></script>
+    <script>
+      const markdownPaths = [
+        "/md/about.md",
+        "/md/getting_started.md",
+        "/md/selen/index.md",
+        "/md/selen/pages/index.md",
+        "/md/selen/pages/base.md",
+        "/md/selen/pages/any.md",
+        "/md/selen/options.md",
+        "/md/selen/webelementex.md",
+        "/md/selen/dictionary.md"
+      ];
+      let pageContents = [];
+      const vueComponents = {
+        content: undefined,
+        tableOfContents: undefined
+      };
+
+      function reflectPage(page){
+        new Promise((resolve) => {
+          vueComponents.content.page = undefined;
+          setTimeout(resolve, 1);
+        })
+        .then(r => {
+          vueComponents.content.page = page;
+        });
+      }
+
+      function reflectHash(){
+        ((page) => page && reflectPage(page))(
+          pageContents.find(content => content.hashPath === location.hash.substring(1)) ||
+          pageContents.length > 0 && pageContents[0]
+        );
+      }
+
+      window.addEventListener("load", async () => {
+
+        pageContents = await Promise.all(
+          markdownPaths.map(markdownPath => fetch(markdownPath)
+            .then(async response => ({
+              rawPath: markdownPath,
+              hashPath: markdownPath
+                .replace(/index\.md$/, "")
+                .replace(/\.md$/, ""),
+              url: response.url,
+              text: await response.text()
+            }))
+          )
+        )
+        .then(contents => contents.map(content => ({
+          ...content,
+          title: content.text.split("\n")[0].replace(/^# /, ""),
+          html: marked.parse(content.text)
+        })));
+
+        document.querySelector("main.loading").classList.remove("loading");
+
+        function onPageChanged(){
+          setTimeout(() => {
+            hljs.highlightAll();
+            Array.from(document.querySelectorAll("#content p a img"))
+              .forEach(function(imgtag){
+                imgtag
+                  .parentNode
+                  .classList
+                  .add("anchor-image-container");
+                imgtag
+                  .parentNode
+                  .parentNode
+                  .classList
+                  .add("paragraph-image-container");
+              });
+            Array.from(document.querySelectorAll("#content pre code"))
+              .forEach(function(codetag){
+                codetag
+                  .parentNode
+                  .classList
+                  .add("code-container");
+              });
+            Array.from(document.querySelectorAll("#content pre code.language-mermaid"))
+              .forEach((codetag) => {
+                const container = codetag.parentNode;
+                if(container.classList.contains("language-mermaid")){return;}
+                container.classList.add("language-mermaid");
+                const div = container.appendChild(document.createElement("div"));
+                div.innerHTML = codetag.innerHTML;
+                div.classList.add("mermaid");
+              });
+            mermaid.init();
+
+            Array.from(document.querySelectorAll("#content pre div.mermaid svg a"))
+              .filter(anchor => anchor.hasAttribute("xlink:href") && anchor.getAttribute("xlink:href").match(/\/\/inner\.link\.dummy\//i))
+              .forEach(anchor => {
+                const intentRef = anchor.getAttribute("xlink:href").replace(/^https:\/\/inner\.link\.dummy/,"");
+                anchor.removeAttribute("xlink:href");
+                anchor.removeAttribute("target");
+                anchor.setAttribute("href", "#"+intentRef);
+              });
+
+            Array.from(document.querySelectorAll("#content table"))
+              .forEach(table => {
+                table.outerHTML = `<div class="table-wrapper">${table.outerHTML}</div>`;
+              });
+
+            document.querySelector("#content").scrollTo(0, 0);
+          }, 1);
+        }
+
+        vueComponents.content = new Vue({
+          el: "#content",
+          watch: {
+            page(){
+              onPageChanged();
+            }
+          },
+          data: () => ({
+            folded: false,
+            page: undefined
+          })
+        });
+
+        vueComponents.tableOfContents = new Vue({
+          el: "#table-of-contents",
+          data: () => ({
+            folded: false,
+            pageContents: []
+          }),
+          watch: {
+            folded(to){
+              vueComponents.content.folded = to;
+            }
+          },
+          methods: {
+            async refresh(){
+              this.pageContents = pageContents;
+              reflectPage(this.pageContents[0]);
+            },
+            chosen(pageContent){
+              reflectPage(pageContent);
+            }
+          },
+          created(){
+            this.refresh();
+          }
+        });
+
+        window.addEventListener("hashchange", reflectHash);
+
+        if(!Boolean(location.hash)){
+          location.hash = pageContents[0].hashPath;
+        }
+
+        reflectHash();
+
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <a href="#/">selenium-pages</a>
+    </header>
+    <main class="loading">
+      <section id="table-of-contents" :class="{ folded }">
+        <h3 class="title">
+          CONTENTS
+          <button class="fold-button" v-on:click="folded = !folded"><span class="material-icons icon">{{ folded ? "unfold_more" : "unfold_less" }}</span></button>
+        </h3>
+        <ul class="index-list" :class="{ folded }">
+          <li
+            v-for="pageContent in pageContents"
+            class="index-list-item"
+          >
+            <a
+              class="index-list-item-button"
+              :href="'#'+pageContent.hashPath"
+            >
+              {{pageContent.title}}
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section id="content" :class="{ folded }">
+        <transition name="fade">
+          <article v-if="page" v-html="page.html" />
+        </transition>
+      </section>
+      <section id="loading">
+        loading...
+      </section>
+    </main>
+    <footer>
+      <a href="https://www.npmjs.com/package/selenium-pages">selenium-pages</a>
+    </footer>
+  </body>
+</html>
