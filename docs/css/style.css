@@ -148,6 +148,10 @@ body > main.loading > #content {
 
 .index-list-item {}
 
+.index-list-item .npm-link .image {
+  width: 100%;
+}
+
 .index-list-item-button {
   display: block;
   padding: 0.5em 1em;
