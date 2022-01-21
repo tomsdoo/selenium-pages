@@ -1,5 +1,8 @@
+docs/
 node_modules/
 src/
+dev_server.js
+
 package-lock.json
 tsconfig.base.json
 tsconfig.cjs.jspn
