@@ -66,6 +66,9 @@ await driver.quit();
 })();
 ```
 
+see https://selenium-pages.netlify.app/  for more.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e681f517-f5c4-4fe6-8d4f-4a0309b1fe23/deploy-status)](https://app.netlify.com/sites/selenium-pages/deploys)
+
 #### How to extend the base class
 You can extend ```Selen.Pages.Base``` class for your own use.
 ``` typescript
