@@ -183,21 +183,39 @@
           CONTENTS
           <button class="fold-button" v-on:click="folded = !folded"><span class="material-icons icon">{{ folded ? "unfold_more" : "unfold_less" }}</span></button>
         </h3>
-        <ul class="index-list" :class="{ folded }">
-          <li
-            v-for="pageContent in pageContents"
-            class="index-list-item"
-          >
-            <a
-              class="index-list-item-button"
-              :href="'#'+pageContent.hashPath"
+        <div class="index-area">
+          <ul class="index-list" :class="{ folded }">
+            <li
+              v-for="pageContent in pageContents"
+              class="index-list-item"
             >
-              {{pageContent.title}}
+              <a
+                class="index-list-item-button"
+                :href="'#'+pageContent.hashPath"
+              >
+                {{pageContent.title}}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <ul class="external-link-list">
+          <li class="external-link-list-item">
+            <a
+              href="https://www.npmjs.com/package/selenium-pages"
+              target="_blank"
+              class="npm-link"
+            >
+              <img
+                src="https://nodei.co/npm/selenium-pages.svg"
+                class="image"
+              />
             </a>
           </li>
-          <li
-            class="index-list-item"
-          >
+        </ul>
+      </section>
+      <section id="external-link-area">
+        <ul class="external-link-list">
+          <li class="external-link-list-item">
             <a
               href="https://www.npmjs.com/package/selenium-pages"
               target="_blank"

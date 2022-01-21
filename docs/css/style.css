@@ -85,8 +85,9 @@ body > main > #loading {
   grid-area: index;
   display: grid;
   grid-template:
-    "title" max-content
-    "list " max-content / 1fr;
+    "title        " max-content
+    "internal-list" 1fr
+    "external-list" max-content/ 1fr;
   min-width: min(20vw, 15rem);
   border-right: 1px solid #434343;
 }
@@ -125,6 +126,13 @@ body > main.loading > #content {
     - (var(--global-grid-gap) * 2)
     );
   overflow-y: auto;
+  -ms-overflow-style: none;  /* Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+#table-of-contents::-webkit-scrollbar,
+#content::-webkit-scrollbar {
+  display: none;
 }
 
 .fade-enter-active {
@@ -139,8 +147,11 @@ body > main.loading > #content {
   opacity: 1;
 }
 
+.index-area {
+  grid-area: internal-list;
+}
+
 .index-list {
-  grid-area: list;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 0;
@@ -150,6 +161,7 @@ body > main.loading > #content {
 
 .index-list-item .npm-link .image {
   width: 100%;
+  aspect-ratio: 50 / 9;
 }
 
 .index-list-item-button {
@@ -161,6 +173,19 @@ body > main.loading > #content {
   text-shadow: 0 0 0.5px;
   /* text-decoration: underline; */
   background: #f6f6f6;
+}
+
+.external-link-list {
+  displauy: grid;
+}
+.external-link-list-item .npm-link .image {
+  width: 100%;
+  aspect-ratio: 50 / 9;
+}
+
+#external-link-area {
+  grid-area: external-list;
+  display: none;
 }
 
 #initial-content {
@@ -310,8 +335,9 @@ body > main.loading > #content {
     grid-area: main;
     display: grid;
     grid-template:
-      "index" max-content
-      "content" max-content / 1fr;
+      "index        " max-content
+      "external-list" max-content
+      "content      " max-content / 1fr;
     grid-gap: 1rem;
     padding: 0;
     width: 100%;
@@ -333,8 +359,8 @@ body > main.loading > #content {
   #table-of-contents {
     grid-area: index;
     grid-template:
-      "title" max-content
-      "list " 1fr / 1fr;
+      "title        " max-content
+      "internal-list" 1fr / 1fr;
     width: 100%;
     padding: 0;
     border: none;
@@ -378,10 +404,22 @@ body > main.loading > #content {
     display: none;
   }
 
+  .external-link-list {
+    display: none;
+  }
+
+  #external-link-area {
+    display: grid;
+  }
+  #external-link-area .external-link-list {
+    display: grid;
+  }
+
   #content {
     height: calc(
       100vh
       - 20vh - 2rem - 1rem
+      - 20vw
       - var(--global-header-height)
       - var(--global-footer-height)
       - (var(--global-grid-gap) * 2)
@@ -393,6 +431,7 @@ body > main.loading > #content {
     height: calc(
       100vh
       - 2rem - 1rem
+      - 20vw - 1rem
       - var(--global-header-height)
       - var(--global-footer-height)
       - (var(--global-grid-gap) * 2)
