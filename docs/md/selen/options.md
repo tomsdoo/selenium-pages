@@ -14,7 +14,8 @@ Options {
 import { Selen } from "selenium-pages";
 
 const options: Selen.Options = {
-  origin: "https://your.site"
+  origin: "https://your.site",
+  homePath: "/"
 };
 ```
 
