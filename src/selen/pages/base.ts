@@ -19,6 +19,7 @@ export class WebElementEx extends WebElement {
 
 export type SelenOptions = {
   origin: string;
+  homePath?: string;
   maxWaitMs?: number;
 };
 
@@ -76,7 +77,7 @@ export abstract class PageBase<Options extends SelenOptions = SelenOptions> {
   }
 
   public async goHome(){
-    await this.goTo();
+    await this.goTo(this.options.homePath);
   }
 
   public async goTo(urlOrPath?: string){
