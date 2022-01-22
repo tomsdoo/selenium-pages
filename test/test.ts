@@ -149,7 +149,7 @@ describe("testing", () => {
 
     class Custom extends Selen.Pages.Base<MyOptions> {
       public async test(){
-        await this.goTo(`/q=${this.options.keyword}`);
+        await this.goTo(`/search?q=${this.options.keyword}`);
       }
     }
 
@@ -166,7 +166,7 @@ describe("testing", () => {
     assert(
       await custom.getCurrentUrl()
         .then(url => url.match(
-          /^https:\/\/www\.google\.com\/q=selenium/i
+          /^https:\/\/www\.google\.com\/search\?q=selenium/i
         ))
     );
   });
