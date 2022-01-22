@@ -70,7 +70,7 @@ console.log(await page.getCurrentUrl());
 It returns ```Promise``` that will be resolved as the title string.
 
 ### goHome()
-```goHome()``` navigates the web driver browser to the origin of the instance options.
+```goHome()``` navigates the web driver browser to the url defined as ```options.homePath``` or ```options.origin``` of the instance options.
 
 ### returns
 It returns ```Promise``` that will be resolved as void.
