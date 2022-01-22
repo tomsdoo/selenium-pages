@@ -7,6 +7,7 @@ And the options can be used in the page classes.
 erDiagram
 Options {
   string origin
+  string homePath
 }
 ```
 
