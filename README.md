@@ -32,7 +32,8 @@ You can use ```Selen.Pages.Any``` class for getting started or lightly use.
 import { Selen } from "selenium-pages";
 
 const pageOptions: Selen.Options = {
-  origin: "https://www.google.com" // home page origin
+  origin: "https://www.google.com", // origin
+  homePath: "/" // path of page home
 };
 
 (async () => {
@@ -74,7 +75,8 @@ You can extend ```Selen.Pages.Base``` class for your own use.
 import { Selen } from "selenium-pages";
 
 const pageOptions: Selen.Options = {
-  origin: "https://www.google.com"
+  origin: "https://www.google.com",
+  homePath: "/"
 };
 
 (async () => {
@@ -124,6 +126,7 @@ class Custom extends Selen.Pages.Base<CustomOptions> {
 
 const customPage = new Custom(driver, {
   origin: "https://...",
+  homePath: "/",
   some: "thing",
   testUrl: "https://.."
 });
