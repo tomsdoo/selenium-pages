@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
     "serve:dev": "npx ts-node dev_server",
-    "test": "npm run build && TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register \"test/**/*.ts\" --timeout 20000"
+    "test": "npm run build && TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register \"test/**/*.ts\" --timeout 30000"
   },
   "keywords": [
     "javascript",
