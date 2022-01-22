@@ -7,6 +7,7 @@ And the options can be used in the page classes.
 erDiagram
 Options {
   string origin
+  string homePath
 }
 ```
 
@@ -14,7 +15,8 @@ Options {
 import { Selen } from "selenium-pages";
 
 const options: Selen.Options = {
-  origin: "https://your.site"
+  origin: "https://your.site",
+  homePath: "/"
 };
 ```
 

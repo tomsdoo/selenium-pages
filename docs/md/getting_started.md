@@ -22,7 +22,8 @@ You can use [```Selen.Pages.Any``` class](#/md/selen/pages/any) for getting star
 import { Selen } from "selenium-pages";
 
 const pageOptions: Selen.Options = {
-  origin: "https://www.google.com" // home page origin
+  origin: "https://www.google.com", // origin
+  homePath: "/" // path of page home
 };
 
 (async () => {

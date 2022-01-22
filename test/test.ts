@@ -10,7 +10,8 @@ Install chromedriver and define PATH to chromedriver before testing
 let driver: WebDriver;
 
 const pageOptions: Selen.Options = {
-  origin: "https://www.google.com"
+  origin: "https://www.google.com",
+  homePath: "/"
 };
 
 describe("testing", () => {
@@ -168,6 +169,23 @@ describe("testing", () => {
         .then(url => url.match(
           /^https:\/\/www\.google\.com\/search\?q=selenium/i
         ))
+    );
+  });
+
+  it("Options.homePath", async () => {
+    const weatherPage = new Selen.Pages.Any(
+      driver,
+      {
+        origin: "https://www.yahoo.com",
+        homePath: "/news/weather/"
+      }
+    );
+
+    await weatherPage.goHome();
+
+    assert.equal(
+      await weatherPage.getCurrentUrl(),
+      "https://www.yahoo.com/news/weather/"
     );
   });
 });

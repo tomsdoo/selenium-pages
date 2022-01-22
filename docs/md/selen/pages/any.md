@@ -16,7 +16,10 @@ import { Selen } from "selenium-pages";
 Selen.build("chrome")
   .then(driver => new Selen.Pages.Any(
     driver,
-    { origin: "https://www.google.com" }
+    {
+      origin: "https://www.google.com",
+      homePath: "/"
+    }
   ))
   .then(async page => {
     await page.goHome();
