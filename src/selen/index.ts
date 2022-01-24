@@ -3,6 +3,7 @@ import { Pages, SelenOptions } from "./pages/";
 export { Pages, SelenOptions, SelenOptions as PageOptions, WebElementEx, Dictionary } from "./pages/";
 
 export class Selen {
+  public static Builder = Builder;
   public static Pages = Pages;
   public static setPath(path: string){
     console.warn("Selen.setPath() is depreciated. Use Selen.addPath() instead.");
