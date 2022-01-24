@@ -1,6 +1,6 @@
 # WebElementEx
 
-```WebElementEx``` class is a child class of [WebElement in "selenium-webdriver"](https://www.selenium.dev/documentation/webdriver/elements/);
+```WebElementEx``` class is a child class of [WebElement in "selenium-webdriver"](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebElement.html);
 
 ```querySelector()``` and ```querySelectorAll()``` methods are added.
 
