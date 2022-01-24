@@ -6,6 +6,7 @@
 classDiagram
 
 class Selen {
+  +Builder Builder$
   +Pages Pages$
   +addPath(path: string)$
   +build(browser: string)$ Promise~WebDriver~
@@ -16,6 +17,14 @@ class Selen {
 
 [```Selen.Pages```](#/md/selen/pages/) is a class what bundles the children.  
 You can access the concrete page classes or the base class through it.
+
+## Selen.Builder
+
+```Selen.Builder``` is [```selenium-webdriver.Builder```](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_Builder.html).
+
+``` typescript
+new Selen.Builder().forBrowser("chrome").build();
+```
 
 ## Selen.addPath()
 
