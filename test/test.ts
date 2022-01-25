@@ -110,6 +110,18 @@ describe("testing", () => {
     );
   });
 
+  it("wait()", async () => {
+    const start = new Date().getTime();
+    const page = new Selen.Pages.Any(
+      driver,
+      pageOptions
+    );
+    await page.wait(3000);
+    assert(
+      new Date().getTime() - start > 3000
+    );
+  });
+
   it("styleDictionary", async () => {
     class Custom extends Selen.Pages.Base {
       initializeStyleDictionary(){
