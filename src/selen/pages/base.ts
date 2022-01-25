@@ -110,4 +110,10 @@ export abstract class PageBase<Options extends SelenOptions = SelenOptions> {
     )
     .map(webele => new WebElementEx(webele, this.styleDictionary));
   }
+
+  public async wait(milliseconds: number){
+    return new Promise((resolve) => {
+      setTimeout(resolve, milliseconds);
+    });
+  }
 }
