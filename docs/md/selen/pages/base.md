@@ -20,6 +20,7 @@ class Base~Options extends Selen.Options~ {
   +isUrlValid() Promise~boolean~
   +querySelector(selector: string) Promise~WebElementEx~
   +querySelectorAll(selector: string) Promise~array_of_WebElementEx~
+  +wait(milliseconds: number) Promise~void~
   #initializeStyleDictionary()
 }
 <<abstract>> Base
@@ -135,6 +136,14 @@ await page.querySelectorAll("div.test input[type='text']")
       await textBox.sendKeys("test");
     }
   });
+```
+
+### wait()
+```wait()``` returns a ```Promise``` that resolves as nothing when the time provided millisecods has passed.
+
+``` typescript
+await page.wait(2000);
+// now, 2 seconds passed
 ```
 
 ### initializeStyleDictionary()
