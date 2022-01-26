@@ -39,6 +39,13 @@ export class Dictionary {
   public get(key: string){
     return key in this.data ? this.data[key] : key;
   }
+  public merge(data: DictionaryKeyValue){
+    this.data = {
+      ...this.data,
+      ...data
+    };
+    return this;
+  }
   public renew(data: DictionaryKeyValue){
     this.data = data;
     return this;

@@ -155,7 +155,8 @@ You can customize ```styleDictionary``` by rewriting ```initializeStyleDictionar
 ``` typescript
 class Custom extends Selen.Pages.Base {
   protected initializeStyleDictionary(){
-    this.styleDictionary.renew({
+    super.initializeStyleDictionary();
+    this.styleDictionary.merge({
       // ready for use later
       someButton: "form button.some"
 

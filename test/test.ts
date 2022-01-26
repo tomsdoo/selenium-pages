@@ -116,22 +116,30 @@ describe("testing", () => {
       driver,
       pageOptions
     );
-    await page.wait(3000);
+    await page.wait(2000);
     assert(
-      new Date().getTime() - start > 3000
+      new Date().getTime() - start > 2000
     );
   });
 
   it("styleDictionary", async () => {
-    class Custom extends Selen.Pages.Base {
-      initializeStyleDictionary(){
-        this.styleDictionary.renew({
-          body: "body",
+    class CustomBase extends Selen.Pages.Base {
+      protected initializeStyleDictionary(){
+        super.initializeStyleDictionary();
+        this.styleDictionary.merge({
+          body: "body"
+        });
+      }
+    }
+    class Custom extends CustomBase {
+      protected initializeStyleDictionary(){
+        super.initializeStyleDictionary();
+        this.styleDictionary.merge({
           qbox: "input[name='q']",
           nextPageLink: "#pnnext"
         });
       }
-      async searchSome(){
+      public async searchSome(){
         await this.querySelector("body")
           .then(body => body.querySelector("qbox"))
           .then(box => box.sendKeys("test", this.Key.ENTER));
