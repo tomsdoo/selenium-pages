@@ -141,7 +141,8 @@ import { Selen } from "selenium-pages";
 
 class Custom extends Selen.Pages.Base {
   protected initializeStyleDictionary(){
-    this.styleDictionary.renew({
+    super.initializeStyleDictionary();
+    this.styleDictionary.merge({
       inputBox: "div form input[name='some']",
       button: "div form button[type='submit']"
     });
