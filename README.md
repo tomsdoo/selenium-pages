@@ -49,8 +49,6 @@ console.log(await page.getCurrentUrl());
 
 console.log(await page.getTitle());
 
-await page.wait(2000);
-
 await page.goTo("/search?q=test");
 
 console.log(
