@@ -16,11 +16,11 @@ class Base~Options extends Selen.Options~ {
   +getCurrentUrl() Promise~string~
   +getTitle() Promise~string~
   +goHome() Promise~void~
-  +goTo(urlOrPath?: string) Promise~void~
+  +goTo(urlOrPath?: string) Promise~undefined~
   +isUrlValid() Promise~boolean~
   +querySelector(selector: string) Promise~WebElementEx~
   +querySelectorAll(selector: string) Promise~array_of_WebElementEx~
-  +wait(milliseconds: number) Promise~void~
+  +wait(milliseconds: number) Promise~undefined~
   #initializeStyleDictionary()
 }
 <<abstract>> Base
@@ -139,7 +139,8 @@ await page.querySelectorAll("div.test input[type='text']")
 ```
 
 ### wait()
-```wait()``` returns a ```Promise``` that resolves as nothing when the time provided millisecods has passed.
+```wait()``` returns a ```Promise``` that resolves as nothing when the time provided millisecods has passed.  
+This instance method is depreciated now.
 
 ``` typescript
 await page.wait(2000);
