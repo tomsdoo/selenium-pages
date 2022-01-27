@@ -119,6 +119,7 @@ export abstract class PageBase<Options extends SelenOptions = SelenOptions> {
   }
 
   public async wait(milliseconds: number){
+    console.warn("The class that inherits Selen.Pages.Base instance method wait() is depreciated. Use [instance].driver.sleep() instead.");
     return new Promise((resolve) => {
       setTimeout(resolve, milliseconds);
     });
