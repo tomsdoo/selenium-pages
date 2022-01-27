@@ -50,6 +50,16 @@ body > header {
 body > header > .menu-button {
   display: none;
 }
+body > header > .header-link {
+  display: grid;
+  grid-template: "icon text" max-content / max-content max-content;
+  grid-gap: 1em;
+  align-items: center;
+}
+body > header > .header-link .logo {
+  width: 1em;
+  height: 1em;
+}
 
 body > footer {
   grid-area: footer;

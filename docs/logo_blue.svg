@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .stroke-color {
+        stroke: #6666cc;
+      }
+      .fill-color {
+        fill: #6666cc;
+      }
+
+      .page {
+        rx: 5px;
+        ry: 5px;
+        width: 40px;
+        height: 40px;
+      }
+      .char {
+        font-size: 8;
+        font-weight: lighter;
+      }
+      .line {
+        stroke-width: 2px;
+      }
+      .triangle {
+      }
+    </style>
+  </defs>
+  <rect
+    class="page stroke-color fill-color"
+    x="30"
+    y="0"
+    height="20"
+  />
+  <text
+    x="38"
+    y="23"
+    class="char fill-color"
+  >
+      B
+  </text>
+
+  <rect
+    class="page stroke-color fill-color"
+    x="0"
+    y="60"
+    width="20"
+    height="20"
+  />
+  <text
+    x="10"
+    y="83"
+    class="char fill-color"
+  >
+      A
+  </text>
+
+  <rect
+    class="page stroke-color fill-color"
+    x="60"
+    y="60"
+    width="20"
+    height="20"
+  />
+  <text
+    x="66"
+    y="83"
+    class="char fill-color"
+  >
+      S
+  </text>
+  <line x1="20" y1="60" x2="20" y2="55" class="line stroke-color" />
+  <line x1="80" y1="60" x2="80" y2="55" class="line stroke-color" />
+  <line x1="20" y1="55" x2="80" y2="55" class="line stroke-color" />
+  <line x1="50" y1="40" x2="50" y2="55" class="line stroke-color" />
+  <polygon points="50,40 40,50 60,50" class="triangle fill-color" />
+</svg>
