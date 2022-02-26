@@ -13,10 +13,6 @@ export class Selen {
     const sep = process.platform == "win32" ? ";" : ":";
     process.env.PATH += `${sep}${path}`;
   }
-  public static async Build(browser: string){
-    console.warn("Selen.Build() is depreciated. Use Selen.build() instead.");
-    return this.build(browser);
-  }
   public static async build(browser: string){
     return new Builder().forBrowser(browser).build();
   }
