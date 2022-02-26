@@ -14,6 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/tomsdoo/selenium-pages.git"
   },
+  "homepage": "https://selenium-pages.netlify.app/",
   "keywords": [
     "javascript",
     "selenium",
