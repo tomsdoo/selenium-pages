@@ -5,10 +5,6 @@ export { Pages, SelenOptions, SelenOptions as PageOptions, WebElementEx, Diction
 export class Selen {
   public static Builder = Builder;
   public static Pages = Pages;
-  public static setPath(path: string){
-    console.warn("Selen.setPath() is depreciated. Use Selen.addPath() instead.");
-    Selen.addPath(path);
-  }
   public static addPath(path: string){
     const sep = process.platform == "win32" ? ";" : ":";
     process.env.PATH += `${sep}${path}`;
