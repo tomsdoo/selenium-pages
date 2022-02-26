@@ -10,6 +10,10 @@
     "serve:dev": "npx ts-node dev_server",
     "test": "npm run build && TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register \"test/**/*.ts\" --timeout 30000"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomsdoo/selenium-pages.git"
+  },
   "keywords": [
     "javascript",
     "selenium",
