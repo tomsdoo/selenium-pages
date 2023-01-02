@@ -1,6 +1,8 @@
+.github/
 docs/
 node_modules/
 src/
+test/
 dev_server.ts
 
 package-lock.json
